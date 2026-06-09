@@ -453,7 +453,7 @@
                 <div style="background: var(--input-bg); border: 1px solid var(--border-solid); border-radius: 8px; padding: 22px; margin-bottom: 30px; font-size: 1.1rem; line-height: 1.7;">
                     <p style="color: var(--text-main); margin-bottom: 14px; font-weight: 700;">Guru & Pelajar boleh akses pautan yang disediakan untuk semakan gambar, saiz cetakan dan harga.</p>
                     <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://drive.google.com/drive/folders/1eIFsQai-I8RgO8YxAh8Cqz5xLrnJNPib" target="_blank" style="color: var(--gold-accent); text-decoration: underline; font-weight: 700;">
+                        <a href="https://drive.google.com/drive/folders/1eIFsQai-I8RgO8YxAh8Cqz5xLrnJNPib?usp=drive_link" target="_blank" style="color: var(--gold-accent); text-decoration: underline; font-weight: 700;">
                             ↗Rujukan Gambar
                         </a>
                         <a href="https://drive.google.com/drive/folders/1uJkseVIagKYUORuM4f-sLr2Nla1haroP?usp=drive_link" target="_blank" style="color: var(--gold-accent); text-decoration: underline; font-weight: 700;">
@@ -557,20 +557,38 @@
 
             <div class="section-card">
                 <div class="section-title">Maklumat Untuk Dihubungi</div>
-                
-                <div class="form-group">
-                    <label for="info-hubung">Sila isikan alamat emel anda (Invoice Digital)</label>
-                    <div class="label-desc">
-                        BAHAGIAN INI WAJIB DI ISI
-                        <ul>
-                            <li>Letakkan alamat emel anda yang sah di bawah jika anda mahukan salinan invois dihantar terus ke peti masuk emel anda.</li>
-                        </ul>
-                        <strong>SILA ISI EMAIL YANG SAH.</strong>
-                    </div>
-                    <input type="email" id="info-hubung" name="info-hubung" placeholder="contoh@gmail.com">
+                <div style="font-size: 1.05rem; color: var(--gold-accent); margin-bottom: 25px; background: var(--gold-light); padding: 14px 18px; border-radius: 6px; border-left: 4px solid var(--gold-accent); font-weight: 600;">
+                    Sila isikan maklumat dibawah untuk
                 </div>
 
-                <div class="payment-instruction" style="border-color: var(--border-solid);">
+                <div class="form-group">
+                    <label for="info-hubung-email">Salinan Invoice</label>
+                    <div class="label-desc">Sekirannya Pelajar/Guru/Penjaga inginkan "Invoice Digital" sila isikan email di bawah untuk dapatkan salinan digital terus di email.</div>
+                    <!-- Tukar name attribute daripada 'info-hubung' ke 'info-hubung-email' -->
+                    <input type="email" id="info-hubung-email" name="info-hubung-email" placeholder="contoh@gmail.com">
+                </div>
+
+                <div style="font-size: 1.05rem; color: var(--gold-accent); margin-bottom: 25px; background: var(--gold-light); padding: 14px 18px; border-radius: 6px; border-left: 4px solid var(--gold-accent); font-weight: 600; margin-top: 40px;">
+                    Sekirannya penjual perlu hubungi Pelajar/Guru/Penjaga, untuk pengesahan pembayaran, atau tempahan sahaja
+                </div>
+
+                <div class="form-group">
+                    <label for="hubung-nama">Nama :</label>
+                    <!-- Tukar id & name attribute daripada 'hubung-nama' ke 'info-hubung-nama' -->
+                    <input type="text" id="info-hubung-nama" name="info-hubung-nama" placeholder="Masukkan nama penuh">
+                </div>
+
+                <div class="form-group">
+                    <label for="hubung-tel">No Telefon :</label>
+                    <!-- Tukar id & name attribute daripada 'hubung-tel' ke 'info-hubung-tel' -->
+                    <input type="tel" id="info-hubung-tel" name="info-hubung-tel" placeholder="Masukkan no telefon">
+                </div>
+
+                <div class="label-desc" style="margin-top: 15px;">
+                    Maklumat di atas hanya akan digunakkan oleh pihak penjual sekiranya perlu sahaja.
+                </div>
+
+                <div class="payment-instruction" style="border-color: var(--border-solid); margin-top: 30px;">
                     <strong>PERTANYAAN LAIN:</strong><br>
                     Sekiranya ada apa-apa pertanyaan, boleh ajukan soalan di nombor di bawah:<br>
                     Nama : Ilyas<br>
@@ -656,7 +674,7 @@
 
         seunitSelects.forEach(elem => elem.addEventListener('change', calculateLivePrices));
 
-        const scriptURL = 'PASTE_YOUR_GOOGLE_WEB_APP_URL_HERE';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwwSDivGo89bqcwkeh6yW3Wjj4fecvmZO-PZ-XDYK0y1-alSku7-EHrIpSI46ymUQIELw/exec';
         const form = document.getElementById('googleSheetForm');
         const btn = document.getElementById('submitBtn');
 
