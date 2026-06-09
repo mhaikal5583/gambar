@@ -593,7 +593,6 @@
         const seunitDiscountValue = document.getElementById('seunit-discount-value');
 
         function calculateLivePrices() {
-            // Track how many copies of each physical size are ordered across the 3 dropdowns
             let sizeCounts = {
                 '4R': 0,
                 '6RW': 0,
@@ -611,7 +610,6 @@
             let baseTotal = 0;
             let finalTotal = 0;
 
-            // Updated pricing calculation formulas for 4R options
             if (sizeCounts['4R'] === 1) {
                 baseTotal += 8;
                 finalTotal += 8;
@@ -620,10 +618,9 @@
                 finalTotal += 16;
             } else if (sizeCounts['4R'] === 3) {
                 baseTotal += 24; 
-                finalTotal += 15; // Decreased bulk pack total price configuration matching parameters
+                finalTotal += 15;
             }
 
-            // Updated pricing calculation formulas for 6RW options
             if (sizeCounts['6RW'] === 1) {
                 baseTotal += 10;
                 finalTotal += 10;
@@ -632,10 +629,9 @@
                 finalTotal += 20;
             } else if (sizeCounts['6RW'] === 3) {
                 baseTotal += 30;
-                finalTotal += 25; // Decreased bulk pack total price configuration matching parameters
+                finalTotal += 25;
             }
 
-            // Updated pricing calculation formulas for 8RW options
             if (sizeCounts['8RW'] === 1) {
                 baseTotal += 15;
                 finalTotal += 15;
@@ -644,10 +640,9 @@
                 finalTotal += 30;
             } else if (sizeCounts['8RW'] === 3) {
                 baseTotal += 45;
-                finalTotal += 35; // Decreased bulk pack total price configuration matching parameters
+                finalTotal += 35;
             }
 
-            // Manage visible calculation tracking discount layout
             let totalSavedDeduction = baseTotal - finalTotal;
             if (totalSavedDeduction > 0) {
                 seunitDiscountValue.innerText = "- RM " + totalSavedDeduction.toFixed(2);
