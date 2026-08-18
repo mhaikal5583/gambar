@@ -590,6 +590,16 @@
             <!-- C. CONTOH SAIZ & HARGA GAMBAR -->
             <div class="section-card">
                 <div class="section-title">C. CONTOH SAIZ & HARGA GAMBAR</div>
+
+                <!-- Pautan Rujukan Google Drive -->
+                <div style="background: var(--input-bg); border: 1px solid var(--border-solid); border-radius: 8px; padding: 22px; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.7;">
+                    <p style="color: var(--text-main); margin-bottom: 14px; font-weight: 700;">Guru & Pelajar boleh akses pautan yang disediakan untuk semakan gambar, saiz cetakan dan harga.</p>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="https://drive.google.com/drive/folders/1eIFsQai-I8RgO8YxAh8Cqz5xLrnJNPib?usp=sharing" target="_blank" style="color: var(--gold-accent); text-decoration: underline; font-weight: 700;">
+                            ↗Rujukan Gambar
+                        </a>
+                    </div>
+                </div>
                 
                 <!-- Grid Sampel Gambar Fullscreen Interaktif (3600 x 2400) -->
                 <div class="sample-images-grid">
@@ -891,7 +901,7 @@
 
         seunitSelects.forEach(elem => elem.addEventListener('change', calculateLivePrices));
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwUsZAnHOw74L-bC4W4IwNL68Cp8MgwUnRPCFhc-gwYjc19NgF7HhNSlug-iZT9z-MhVQ/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwwSDivGo89bqcwkeh6yW3Wjj4fecvmZO-PZ-XDYK0y1-alSku7-EHrIpSI46ymUQIELw/exec';
         const form = document.getElementById('googleSheetForm');
         const btn = document.getElementById('submitBtn');
 
