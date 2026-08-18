@@ -123,12 +123,6 @@
             margin-bottom: 15px;
         }
 
-        .label-desc ul {
-            margin-left: 20px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-        }
-
         input[type="text"],
         input[type="tel"],
         input[type="email"],
@@ -175,6 +169,85 @@
             color: #4b5563;
         }
 
+        /* Fixed Dimensions: 3600 x 2400 (3:2 Ratio) with Hover Zoom Effect */
+        .sample-images-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 25px;
+        }
+
+        .sample-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .sample-img-wrapper {
+            width: 100%;
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-solid);
+            background-color: var(--input-bg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .sample-img-wrapper:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold-accent);
+        }
+
+        .sample-img-wrapper img {
+            width: 100%;
+            aspect-ratio: 3600 / 2400;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sample-img-wrapper .zoom-hint {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--gold-accent);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .sample-item span {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+        }
+
+        .dynamic-class-note {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-solid);
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .dynamic-class-note strong {
+            color: var(--gold-accent);
+        }
+
         .calculation-summary-panel {
             margin-top: 20px;
             border-top: 1px solid var(--border-solid);
@@ -200,8 +273,8 @@
 
         .qr-section-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
             margin-bottom: 30px;
         }
 
@@ -209,18 +282,24 @@
             background: var(--input-bg);
             border: 1px solid var(--border-solid);
             border-radius: 8px;
-            padding: 16px;
+            padding: 14px;
             text-align: center;
         }
 
         .qr-box-inner {
             background-color: #ffffff;
-            padding: 10px;
+            padding: 8px;
             border-radius: 6px;
             aspect-ratio: 1/1;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .qr-box-inner:hover {
+            transform: scale(1.03);
         }
 
         .qr-box-inner img {
@@ -230,10 +309,11 @@
         }
 
         .qr-label-text {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-main);
-            margin-top: 12px;
+            margin-top: 10px;
+            line-height: 1.3;
         }
 
         .bank-details-box {
@@ -266,7 +346,7 @@
             padding: 18px 22px;
             border-radius: 8px;
             border: 1px dashed var(--border-solid);
-            color: var(--text-body);
+            color: var(--text-main);
         }
 
         .payment-instruction.highlight-red {
@@ -309,8 +389,66 @@
             box-shadow: none;
         }
 
+        /* Fullscreen Lightbox Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal img {
+            max-width: 95vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
+            cursor: default;
+        }
+
+        .image-modal-caption {
+            margin-top: 16px;
+            color: var(--gold-accent);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .image-modal-close:hover {
+            color: var(--gold-accent);
+        }
+
         @media (max-width: 800px) {
-            .qr-section-grid, .bank-details-box { grid-template-columns: 1fr; }
+            .qr-section-grid { grid-template-columns: 1fr; }
+            .bank-details-box { grid-template-columns: 1fr; }
+            .sample-images-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -325,7 +463,7 @@
             
             <div class="notice-box">
                 <strong>MAKLUMAT PENTING :</strong><br>
-                • Bayaran : Hanya secara atas talian sahaja. Bank Islam QR @ Qr Touch N Go sahaja.<br>
+                • Bayaran : Hanya secara atas talian sahaja. Bank Islam QR @ Maybank QR @ Touch N Go sahaja.<br>
                 • Tempoh Akhir Jualan : SEHINGGA BORANG TIDAK LAGI BOLEH DIAKSES<br>
                 • Tempoh Serahan Gambar : GAMBAR AKAN DISERAHKAN PADA GURU MAJALAH 2026<br><br>
                 <strong>* SILA ISI BORANG INI DENGAN LENGKAP DAN BUAT BAYARAN SECARA TERUS. PENJUAL / GURU TIDAK AKAN HUBUNGI WAKIL PELAJAR ATAU IBU BAPA SEKIRANYA BAYARAN TIDAK DIBUAT.</strong>
@@ -334,8 +472,9 @@
 
         <form id="googleSheetForm">
 
+            <!-- A. MAKLUMAT PELAJAR -->
             <div class="section-card">
-                <div class="section-title">Maklumat Pelajar</div>
+                <div class="section-title">A. MAKLUMAT PELAJAR</div>
                 
                 <div class="form-group">
                     <label for="nama-pelajar">Nama Pelajar (Nama Penuh)</label>
@@ -383,8 +522,9 @@
                 </div>
             </div>
 
+            <!-- B. MAKLUMAT GURU & PENJAGA -->
             <div class="section-card">
-                <div class="section-title">Maklumat Guru Dan Penjaga</div>
+                <div class="section-title">B. MAKLUMAT GURU & PENJAGA</div>
                 <div style="font-size: 1.05rem; color: var(--gold-accent); margin-bottom: 25px; background: var(--gold-light); padding: 14px 18px; border-radius: 6px; border-left: 4px solid var(--gold-accent); font-weight: 600;">
                     * Bahagian ini hanya isi sekiranya Guru ataupun Penjaga ingin membuat pembelian gambar.
                 </div>
@@ -447,28 +587,45 @@
                 </div>
             </div>
 
+            <!-- C. CONTOH SAIZ & HARGA GAMBAR -->
             <div class="section-card">
-                <div class="section-title">Bahagian Contoh, Saiz & Harga Gambar</div>
+                <div class="section-title">C. CONTOH SAIZ & HARGA GAMBAR</div>
                 
-                <div style="background: var(--input-bg); border: 1px solid var(--border-solid); border-radius: 8px; padding: 22px; margin-bottom: 30px; font-size: 1.1rem; line-height: 1.7;">
-                    <p style="color: var(--text-main); margin-bottom: 14px; font-weight: 700;">Guru & Pelajar boleh akses pautan yang disediakan untuk semakan gambar, saiz cetakan dan harga.</p>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://drive.google.com/drive/folders/1eIFsQai-I8RgO8YxAh8Cqz5xLrnJNPib?usp=drive_link" target="_blank" style="color: var(--gold-accent); text-decoration: underline; font-weight: 700;">
-                            ↗Rujukan Gambar
-                        </a>
-                        <a href="https://drive.google.com/drive/folders/1uJkseVIagKYUORuM4f-sLr2Nla1haroP?usp=drive_link" target="_blank" style="color: var(--gold-accent); text-decoration: underline; font-weight: 700;">
-                            ↗Saiz Gambar
-                        </a>
+                <!-- Grid Sampel Gambar Fullscreen Interaktif (3600 x 2400) -->
+                <div class="sample-images-grid">
+                    <div class="sample-item">
+                        <div class="sample-img-wrapper" onclick="openFullscreen('FormalKelas.jpeg', 'FORMAL')">
+                            <img src="FormalKelas.jpeg" alt="FORMAL">
+                            <div class="zoom-hint">🔍 Lihat Penuh</div>
+                        </div>
+                        <span>FORMAL</span>
+                    </div>
+                    <div class="sample-item">
+                        <div class="sample-img-wrapper" onclick="openFullscreen('FormalKelas.jpeg', 'FREESTYLE')">
+                            <img src="FormalKelas.jpeg" alt="FREESTYLE">
+                            <div class="zoom-hint">🔍 Lihat Penuh</div>
+                        </div>
+                        <span>FREESTYLE</span>
+                    </div>
+                    <div class="sample-item">
+                        <div class="sample-img-wrapper" onclick="openFullscreen('PropKelas.jpeg', 'PROPS')">
+                            <img src="PropKelas.jpeg" alt="PROPS">
+                            <div class="zoom-hint">🔍 Lihat Penuh</div>
+                        </div>
+                        <span>PROPS</span>
                     </div>
                 </div>
-                
-                <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 15px; border-bottom: 1px solid var(--border-solid); padding-bottom: 5px; color: var(--gold-accent);">1. Harga Jualan</div>
+
                 <div style="font-size: 1rem; color: #16a34a; font-weight: 600; margin-bottom: 15px; background: rgba(22, 163, 74, 0.1); padding: 10px; border-radius: 6px; border: 1px solid #16a34a;">
                     Pembelian 3 keping saiz yang sama akan dapat harga murah.
                 </div>
 
+                <div class="dynamic-class-note" id="classSelectionPreview">
+                    Gambar yang dibeli untuk: <strong>Belum dipilih (Sila pilih Tingkatan & Kelas di Bahagian A)</strong>
+                </div>
+
                 <div class="form-group">
-                    <label for="seunit-formal">FORMAL (Ada Nama Pelajar & Guru Kelas)</label>
+                    <label for="seunit-formal">FORMAL</label>
                     <select id="seunit-formal" name="seunit-formal" class="calc-trigger-select">
                         <option value="Tidak Berminat" data-size="none">TIDAK BERMINAT — RM 0.00</option>
                         <option value="4R" data-size="4R">4R (4 in x 6 in) — RM 8.00</option>
@@ -478,7 +635,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="seunit-freestyle">FREESTYLE (Gambar Kreatif Warna)</label>
+                    <label for="seunit-freestyle">FREESTYLE</label>
                     <select id="seunit-freestyle" name="seunit-freestyle" class="calc-trigger-select">
                         <option value="Tidak Berminat" data-size="none">TIDAK BERMINAT — RM 0.00</option>
                         <option value="4R" data-size="4R">4R (4 in x 6 in) — RM 8.00</option>
@@ -488,7 +645,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="seunit-props">PROPS (Gambar Menggunakan Aksesori)</label>
+                    <label for="seunit-props">PROPS</label>
                     <select id="seunit-props" name="seunit-props" class="calc-trigger-select">
                         <option value="Tidak Berminat" data-size="none">TIDAK BERMINAT — RM 0.00</option>
                         <option value="4R" data-size="4R">4R (4 in x 6 in) — RM 8.00</option>
@@ -509,8 +666,9 @@
                 </div>
             </div>
 
+            <!-- D. CARA PEMBAYARAN & TUNTUTAN GAMBAR -->
             <div class="section-card">
-                <div class="section-title">Proses, Bayaran & Tuntutan Gambar</div>
+                <div class="section-title">D. CARA PEMBAYARAN & TUNTUTAN GAMBAR</div>
                 
                 <div class="payment-instruction" style="margin-bottom: 30px; margin-top: 0;">
                     • Hantar bukti pembelian sama ada "upload" dalam borang.<br>
@@ -520,11 +678,21 @@
 
                 <div class="qr-section-grid">
                     <div class="qr-card-wrapper">
-                        <div class="qr-box-inner"><img src="bankislam.jpeg" alt="Bank Islam QR"></div>
+                        <div class="qr-box-inner" onclick="openFullscreen('bankislam.jpeg', 'QR Bank Islam')">
+                            <img src="bankislam.jpeg" alt="Bank Islam QR">
+                        </div>
                         <div class="qr-label-text">Bank Islam (Muhammad Ilyas)</div>
                     </div>
                     <div class="qr-card-wrapper">
-                        <div class="qr-box-inner"><img src="tng.jpeg" alt="Touch n Go QR"></div>
+                        <div class="qr-box-inner" onclick="openFullscreen('maybank.jpeg', 'QR Maybank')">
+                            <img src="maybank.jpeg" alt="Maybank QR">
+                        </div>
+                        <div class="qr-label-text">Maybank (Muhammad Ilyas)</div>
+                    </div>
+                    <div class="qr-card-wrapper">
+                        <div class="qr-box-inner" onclick="openFullscreen('tng.jpeg', 'QR Touch n Go')">
+                            <img src="tng.jpeg" alt="Touch n Go QR">
+                        </div>
                         <div class="qr-label-text">Touch n Go (Muhammad Ilyas)</div>
                     </div>
                 </div>
@@ -555,8 +723,9 @@
                 </div>
             </div>
 
+            <!-- E. MAKLUMAT JIKA PERLU DIHUBUNGI -->
             <div class="section-card">
-                <div class="section-title">Maklumat Untuk Dihubungi</div>
+                <div class="section-title">E. MAKLUMAT JIKA PERLU DIHUBUNGI</div>
                 <div style="font-size: 1.05rem; color: var(--gold-accent); margin-bottom: 25px; background: var(--gold-light); padding: 14px 18px; border-radius: 6px; border-left: 4px solid var(--gold-accent); font-weight: 600;">
                     Sila isikan maklumat dibawah untuk
                 </div>
@@ -564,7 +733,6 @@
                 <div class="form-group">
                     <label for="info-hubung-email">Salinan Invoice</label>
                     <div class="label-desc">Sekirannya Pelajar/Guru/Penjaga inginkan "Invoice Digital" sila isikan email di bawah untuk dapatkan salinan digital terus di email.</div>
-                    <!-- Tukar name attribute daripada 'info-hubung' ke 'info-hubung-email' -->
                     <input type="email" id="info-hubung-email" name="info-hubung-email" placeholder="contoh@gmail.com">
                 </div>
 
@@ -573,14 +741,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="hubung-nama">Nama :</label>
-                    <!-- Tukar id & name attribute daripada 'hubung-nama' ke 'info-hubung-nama' -->
+                    <label for="info-hubung-nama">Nama :</label>
                     <input type="text" id="info-hubung-nama" name="info-hubung-nama" placeholder="Masukkan nama penuh">
                 </div>
 
                 <div class="form-group">
-                    <label for="hubung-tel">No Telefon :</label>
-                    <!-- Tukar id & name attribute daripada 'hubung-tel' ke 'info-hubung-tel' -->
+                    <label for="info-hubung-tel">No Telefon :</label>
                     <input type="tel" id="info-hubung-tel" name="info-hubung-tel" placeholder="Masukkan no telefon">
                 </div>
 
@@ -604,7 +770,58 @@
         </form>
     </div>
 
+    <!-- Lightbox Modal Popup -->
+    <div id="imageModal" class="image-modal" onclick="closeFullscreen()">
+        <span class="image-modal-close" onclick="closeFullscreen()">&times;</span>
+        <img id="modalImage" src="" alt="Fullscreen View" onclick="event.stopPropagation()">
+        <div id="modalCaption" class="image-modal-caption"></div>
+    </div>
+
     <script>
+        // Fullscreen Lightbox Functionality
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+
+        function openFullscreen(imageSrc, captionText) {
+            modalImage.src = imageSrc;
+            modalCaption.innerText = captionText;
+            imageModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Kunci scroll latar belakang
+        }
+
+        function closeFullscreen() {
+            imageModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Aktifkan semula scroll
+        }
+
+        // Tutup modal guna tombol ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && imageModal.classList.contains('active')) {
+                closeFullscreen();
+            }
+        });
+
+        const tingkatanSelect = document.getElementById('tingkatan-pelajar');
+        const kelasSelect = document.getElementById('nama-kelas-pelajar');
+        const previewBox = document.getElementById('classSelectionPreview');
+
+        function updateClassPreview() {
+            const formVal = tingkatanSelect.value;
+            const classVal = kelasSelect.value;
+
+            if (formVal && classVal) {
+                previewBox.innerHTML = `Gambar yang dibeli untuk: <strong>${formVal} - ${classVal}</strong>`;
+            } else if (formVal || classVal) {
+                previewBox.innerHTML = `Gambar yang dibeli untuk: <strong>${formVal || ''} ${classVal || ''}</strong>`;
+            } else {
+                previewBox.innerHTML = `Gambar yang dibeli untuk: <strong>Belum dipilih (Sila pilih Tingkatan & Kelas di Bahagian A)</strong>`;
+            }
+        }
+
+        tingkatanSelect.addEventListener('change', updateClassPreview);
+        kelasSelect.addEventListener('change', updateClassPreview);
+
         const seunitSelects = document.querySelectorAll('.calc-trigger-select');
         const grandTotalBox = document.getElementById('grand-total-box');
         const promoSeunitRow = document.getElementById('promo-seunit-row');
@@ -674,7 +891,7 @@
 
         seunitSelects.forEach(elem => elem.addEventListener('change', calculateLivePrices));
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwwSDivGo89bqcwkeh6yW3Wjj4fecvmZO-PZ-XDYK0y1-alSku7-EHrIpSI46ymUQIELw/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwUsZAnHOw74L-bC4W4IwNL68Cp8MgwUnRPCFhc-gwYjc19NgF7HhNSlug-iZT9z-MhVQ/exec';
         const form = document.getElementById('googleSheetForm');
         const btn = document.getElementById('submitBtn');
 
@@ -716,6 +933,7 @@
                             alert('Tempahan berjaya dihantar! Salinan resit rasmi dan maklumat pengesahan invois telah dijana ke dalam emel anda secara langsung.');
                             form.reset();
                             calculateLivePrices();
+                            updateClassPreview();
                         } else {
                             alert('Ralat sistem: ' + data.error);
                         }
